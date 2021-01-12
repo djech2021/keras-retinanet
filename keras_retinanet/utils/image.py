@@ -93,7 +93,7 @@ class TransformParameters:
     """
     def __init__(
         self,
-        fill_mode            = 'nearest',
+        fill_mode            = 'constant',
         interpolation        = 'linear',
         cval                 = 0,
         relative_translation = True,
