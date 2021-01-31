@@ -194,20 +194,20 @@ def create_callbacks(model, training_model, prediction_model, validation_generat
         callbacks.append(checkpoint)
 
     callbacks.append(keras.callbacks.ReduceLROnPlateau(
-        monitor    = 'loss',
+        monitor    = 'mAP',
         factor     = args.reduce_lr_factor,
         patience   = args.reduce_lr_patience,
         verbose    = 1,
         mode       = 'auto',
         min_delta  = 0.0001,
-        cooldown   = 0,
-        min_lr     = 0
+        cooldown   = 5,
+        min_lr     = 1*10**-10
     ))
 
     if args.evaluation and validation_generator:
         callbacks.append(keras.callbacks.EarlyStopping(
             monitor    = 'mAP',
-            patience   = 5,
+            patience   = 100,
             mode       = 'max',
             min_delta  = 0.01
         ))
